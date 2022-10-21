@@ -28,4 +28,8 @@ class HomeController < ApplicationController
     @all_users = User.where(:group_id => current_user.group_id)
   end
 
+  def get_user_info
+    @all_users = User.where(:id => current_user.id)
+  end
+
 end

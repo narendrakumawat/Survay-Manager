@@ -16,6 +16,20 @@ class SurvayController < ApplicationController
     end
   end
 
+  def get_all
+    begin
+      survay = Survay.where(
+        :id => params[:id],
+        :group_id => current_user.group_id
+      )
+     
+      render :json => {:data => survay.to_json}, :status => :ok
+    rescue => exception
+      puts exception
+      render :json => {message: exception}, :status => 500
+    end
+  end
+
   def destroy
     begin
       survay = Survay.where(
